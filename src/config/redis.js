@@ -15,3 +15,18 @@ client.on('error', (err)=>{
 })
 
 export default client;
+
+
+/*Ejemplo de como integrarlo en message handler con set, get y expire
+const redisKey = `msg:${message.id}`;//guarda el message.id
+const exists = await redisClient.get(redisKey);//verifica si existe en redis
+
+if (exists) {
+  console.log("Mensaje ya procesado, lo ignoramos.");
+  return;//si existe entonces lo ignora
+}
+
+// Guardamos el ID para evitar re-procesar
+await redisClient.set(redisKey, 'ok');
+// Expira en 5 minutos
+await redisClient.expire(redisKey, 300);*/
